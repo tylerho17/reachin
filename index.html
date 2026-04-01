@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ReachIn — Cold emails for IB recruiting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f1f3d;
+    --navy2: #172544;
+    --navy3: #1e3060;
+    --navy-light: #2a4580;
+    --bg: #ffffff;
+    --surface: #f7f8fa;
+    --surface2: #eef0f5;
+    --border: #dde1eb;
+    --border2: #c8cedc;
+    --text: #0f1f3d;
+    --muted: #7a8299;
+    --muted2: #a0a9be;
+    --accent: #c9a96e;
+    --sans: 'DM Sans', sans-serif;
+    --serif: 'EB Garamond', serif;
+    --mono: 'DM Mono', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    min-height: 100vh;
+  }
+
+  nav {
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 56px;
+  }
+
+  .logo {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    color: #ffffff;
+    letter-spacing: 0.01em;
+  }
+
+  .logo span { color: var(--accent); }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .counter-pill {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.04em;
+  }
+
+  .counter-pill span { color: var(--accent); font-weight: 500; }
+
+  .profile-btn {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.08);
+    border: 0.5px solid rgba(255,255,255,0.18);
+    padding: 6px 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .profile-btn:hover { background: rgba(255,255,255,0.14); color: #fff; }
+
+  .hero {
+    background: var(--navy);
+    padding: 48px 40px 52px;
+    border-bottom: 3px solid var(--accent);
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 1.12;
+    color: #ffffff;
+    margin-bottom: 14px;
+    max-width: 560px;
+  }
+
+  .hero h1 em { font-style: italic; color: var(--accent); }
+
+  .hero p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    max-width: 440px;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 240px);
+  }
+
+  .left-panel {
+    padding: 36px 40px;
+    border-right: 1px solid var(--border);
+  }
+
+  .panel-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted2);
+    margin-bottom: 18px;
+  }
+
+  .search-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  input, textarea {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 9px 12px;
+    outline: none;
+    transition: border-color 0.15s;
+    width: 100%;
+  }
+
+  input::placeholder, textarea::placeholder { color: var(--muted2); }
+  input:focus, textarea:focus { border-color: var(--navy-light); }
+
+  .search-btn {
+    background: var(--navy);
+    border: none;
+    border-radius: 3px;
+    padding: 9px 16px;
+    color: #fff;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+    transition: background 0.15s;
+    flex-shrink: 0;
+  }
+
+  .search-btn:hover { background: var(--navy3); }
+
+  .search-hint {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 28px;
+    line-height: 1.65;
+  }
+
+  .search-hint a { color: var(--navy-light); text-decoration: none; }
+  .search-hint a:hover { text-decoration: underline; }
+
+  .divider-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .divider-label span {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted2);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  .divider-line { flex: 1; height: 1px; background: var(--border); }
+
+  textarea.paste-zone {
+    min-height: 200px;
+    resize: vertical;
+    line-height: 1.6;
+    font-size: 12px;
+    font-family: var(--mono);
+  }
+
+  .char-count {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted2);
+    text-align: right;
+    margin-top: 5px;
+    margin-bottom: 18px;
+  }
+
+  .generate-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--navy);
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .generate-btn:hover { background: var(--navy3); }
+  .generate-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+  .status-line {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-align: center;
+    margin-top: 10px;
+    min-height: 18px;
+    color: var(--muted);
+  }
+
+  .status-line.error { color: #c0392b; }
+
+  .right-panel {
+    padding: 36px 40px;
+    background: var(--surface);
+  }
+
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 320px;
+    text-align: center;
+  }
+
+  .empty-icon {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--border2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    color: var(--muted2);
+    font-size: 16px;
+    background: #fff;
+  }
+
+  .empty-state p {
+    font-size: 13px;
+    color: var(--muted);
+    max-width: 240px;
+    line-height: 1.7;
+  }
+
+  .output-section { display: none; flex-direction: column; }
+  .output-section.visible { display: flex; }
+
+  .recipient-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 12px 16px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: #fff;
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+
+  .recipient-name { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+  .recipient-meta { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.03em; }
+
+  .email-block {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+
+  .email-subject-wrapper {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface2);
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+  }
+
+  .subject-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted2);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .email-subject-text { font-size: 13px; font-weight: 500; color: var(--navy); }
+
+  .email-body {
+    padding: 18px 16px;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.85;
+    font-family: var(--sans);
+    font-weight: 300;
+    white-space: pre-wrap;
+  }
+
+  .word-count {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted2);
+    text-align: right;
+    margin-bottom: 8px;
+  }
+
+  .action-row { display: flex; gap: 8px; }
+
+  .action-btn {
+    flex: 1;
+    padding: 10px;
+    font-size: 12px;
+    font-family: var(--mono);
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.15s;
+    letter-spacing: 0.04em;
+  }
+
+  .btn-copy { background: var(--navy); border: none; color: #fff; font-weight: 500; }
+  .btn-copy:hover { background: var(--navy3); }
+  .btn-regen { background: #fff; border: 1px solid var(--border2); color: var(--muted); }
+  .btn-regen:hover { border-color: var(--navy-light); color: var(--navy); }
+
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15,31,61,0.6);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 28px 32px;
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .modal-title { font-family: var(--serif); font-size: 22px; font-weight: 400; color: var(--navy); margin-bottom: 4px; }
+  .modal-sub { font-size: 12px; color: var(--muted); margin-bottom: 22px; }
+  .modal-field { margin-bottom: 14px; }
+
+  .modal-field label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+
+  .modal-two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .modal-actions { display: flex; gap: 8px; margin-top: 20px; }
+
+  .modal-save {
+    flex: 1;
+    padding: 10px;
+    background: var(--navy);
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: background 0.15s;
+  }
+
+  .modal-save:hover { background: var(--navy3); }
+
+  .modal-cancel {
+    padding: 10px 18px;
+    background: none;
+    border: 1px solid var(--border2);
+    border-radius: 3px;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .modal-cancel:hover { color: var(--navy); border-color: var(--navy-light); }
+
+  footer {
+    background: var(--navy);
+    border-top: 3px solid var(--accent);
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  footer p { font-family: var(--mono); font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 0.06em; }
+
+  .loading-dots::after {
+    content: '';
+    animation: dots 1.2s steps(4, end) infinite;
+  }
+
+  @keyframes dots {
+    0%   { content: ''; }
+    25%  { content: '.'; }
+    50%  { content: '..'; }
+    75%  { content: '...'; }
+  }
+
+  @media (max-width: 768px) {
+    nav, footer { padding: 0 20px; }
+    nav { height: 52px; }
+    .hero { padding: 32px 20px 36px; }
+    .hero h1 { font-size: 30px; }
+    .main { grid-template-columns: 1fr; }
+    .left-panel { padding: 24px 20px; border-right: none; border-bottom: 1px solid var(--border); }
+    .right-panel { padding: 24px 20px; }
+    footer { padding: 14px 20px; flex-direction: column; gap: 6px; height: auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Reach<span>In</span></div>
+  <div class="nav-right">
+    <div class="counter-pill"><span id="remaining">10</span> emails left today</div>
+    <button class="profile-btn" onclick="openModal()">My profile</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">IB cold outreach — automated</div>
+  <h1>Find them.<br><em>Email them.</em><br>Get the meeting.</h1>
+  <p>Search LinkedIn, paste their profile, get a personalized cold email in seconds. Free for students.</p>
+</div>
+
+<div class="main">
+  <div class="left-panel">
+    <div class="panel-label">01 — find a banker</div>
+    <div class="search-row">
+      <input type="text" id="search-input" placeholder='Goldman Sachs TMT analyst UCLA...' onkeydown="if(event.key==='Enter')runSearch()">
+      <button class="search-btn" onclick="runSearch()">Search →</button>
+    </div>
+    <div class="search-hint">
+      Opens a Google X-Ray LinkedIn search. Click a profile → select all text → copy → paste below.<br>
+      <a href="https://www.linkedin.com" target="_blank">Or go to LinkedIn directly →</a>
+    </div>
+
+    <div class="divider-label">
+      <div class="divider-line"></div>
+      <span>02 — paste their profile</span>
+      <div class="divider-line"></div>
+    </div>
+
+    <textarea class="paste-zone" id="linkedin-paste" placeholder="Paste the full text from their LinkedIn profile here. The more you include, the more personalized the email." oninput="updateCharCount()"></textarea>
+    <div class="char-count" id="char-count">0 characters</div>
+
+    <button class="generate-btn" id="gen-btn" onclick="generate()">Generate email →</button>
+    <div class="status-line" id="status"></div>
+  </div>
+
+  <div class="right-panel">
+    <div class="panel-label">03 — your email</div>
+
+    <div class="empty-state" id="empty-state">
+      <div class="empty-icon">✉</div>
+      <p>Paste a LinkedIn profile on the left and hit generate. Your personalized email appears here.</p>
+    </div>
+
+    <div class="output-section" id="output-section">
+      <div class="recipient-card">
+        <div class="avatar" id="avatar">—</div>
+        <div>
+          <div class="recipient-name" id="rec-name">—</div>
+          <div class="recipient-meta" id="rec-meta">—</div>
+        </div>
+      </div>
+
+      <div class="email-block">
+        <div class="email-subject-wrapper">
+          <span class="subject-label">Subject</span>
+          <span class="email-subject-text" id="email-subject">—</span>
+        </div>
+        <div class="email-body" id="email-body">—</div>
+      </div>
+
+      <div class="word-count" id="word-count"></div>
+
+      <div class="action-row">
+        <button class="action-btn btn-regen" onclick="generate()">Regenerate</button>
+        <button class="action-btn btn-copy" id="copy-btn" onclick="copyEmail()">Copy email</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>ReachIn — free for students</p>
+  <p>10 emails / day · no account needed</p>
+</footer>
+
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-title">Your profile</div>
+    <div class="modal-sub">Saved in your browser. Fill once, used on every email.</div>
+
+    <div class="modal-two">
+      <div class="modal-field">
+        <label>First name</label>
+        <input type="text" id="p-name" placeholder="Tyler">
+      </div>
+      <div class="modal-field">
+        <label>Year</label>
+        <input type="text" id="p-year" placeholder="sophomore">
+      </div>
+    </div>
+    <div class="modal-two">
+      <div class="modal-field">
+        <label>School</label>
+        <input type="text" id="p-school" placeholder="UC Irvine">
+      </div>
+      <div class="modal-field">
+        <label>Major</label>
+        <input type="text" id="p-major" placeholder="Business Administration">
+      </div>
+    </div>
+    <div class="modal-field">
+      <label>Internships / experiences</label>
+      <textarea id="p-exp" rows="2" placeholder="Barclays IBD (incoming), Concordia Capital, CB Capital..."></textarea>
+    </div>
+    <div class="modal-field">
+      <label>Your goal (one sentence)</label>
+      <textarea id="p-goal" rows="2" placeholder="Focused on tech banking, want to be in IB long-term at a BB or EB..."></textarea>
+    </div>
+
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-save" onclick="saveProfile()">Save profile</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const DAILY_LIMIT = 10;
+
+  function getTodayKey() { return 'reachin_used_' + new Date().toISOString().slice(0, 10); }
+  function getUsed() { return parseInt(localStorage.getItem(getTodayKey()) || '0'); }
+  function incrementUsed() { localStorage.setItem(getTodayKey(), (getUsed() + 1).toString()); }
+  function updateCounter() { document.getElementById('remaining').textContent = Math.max(0, DAILY_LIMIT - getUsed()); }
+  function updateCharCount() {
+    const len = document.getElementById('linkedin-paste').value.length;
+    document.getElementById('char-count').textContent = len.toLocaleString() + ' characters';
+  }
+
+  function runSearch() {
+    const q = document.getElementById('search-input').value.trim();
+    if (!q) return;
+    window.open('https://www.google.com/search?q=' + encodeURIComponent('site:linkedin.com/in ' + q), '_blank');
+  }
+
+  function getProfile() {
+    return {
+      name: localStorage.getItem('p-name') || '',
+      year: localStorage.getItem('p-year') || '',
+      school: localStorage.getItem('p-school') || '',
+      major: localStorage.getItem('p-major') || '',
+      exp: localStorage.getItem('p-exp') || '',
+      goal: localStorage.getItem('p-goal') || ''
+    };
+  }
+
+  function saveProfile() {
+    ['p-name','p-year','p-school','p-major','p-exp','p-goal'].forEach(id => {
+      localStorage.setItem(id, document.getElementById(id).value);
+    });
+    closeModal();
+    const s = document.getElementById('status');
+    s.textContent = 'Profile saved.';
+    s.className = 'status-line';
+    setTimeout(() => s.textContent = '', 2000);
+  }
+
+  function loadProfileIntoModal() {
+    ['p-name','p-year','p-school','p-major','p-exp','p-goal'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = localStorage.getItem(id) || '';
+    });
+  }
+
+  function openModal() { loadProfileIntoModal(); document.getElementById('modal-overlay').classList.add('open'); }
+  function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); }
+  function closeModalOutside(e) { if (e.target === document.getElementById('modal-overlay')) closeModal(); }
+
+  async function generate() {
+    const text = document.getElementById('linkedin-paste').value.trim();
+    const status = document.getElementById('status');
+
+    if (!text || text.length < 50) {
+      status.textContent = 'Paste more of their LinkedIn profile first.';
+      status.className = 'status-line error';
+      return;
+    }
+
+    const profile = getProfile();
+    if (!profile.name) {
+      openModal();
+      status.textContent = 'Fill in your profile first (top right).';
+      status.className = 'status-line error';
+      return;
+    }
+
+    const btn = document.getElementById('gen-btn');
+    btn.disabled = true;
+    status.innerHTML = '<span class="loading-dots">Writing your email</span>';
+    status.className = 'status-line';
+
+    try {
+      const res = await fetch('/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ linkedinText: text, profile })
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        status.textContent = data.error || 'Something went wrong.';
+        status.className = 'status-line error';
+        btn.disabled = false;
+        return;
+      }
+
+      renderEmail(data);
+      incrementUsed();
+      updateCounter();
+      status.textContent = '';
+
+    } catch (err) {
+      status.textContent = 'Network error. Try again.';
+      status.className = 'status-line error';
+    }
+
+    btn.disabled = false;
+  }
+
+  function renderEmail(data) {
+    const name = data.recipientName || 'Unknown';
+    const firm = data.recipientFirm || '';
+    const title = data.recipientTitle || '';
+    const initials = name.split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase();
+
+    document.getElementById('avatar').textContent = initials;
+    document.getElementById('rec-name').textContent = name;
+    document.getElementById('rec-meta').textContent = [title, firm].filter(Boolean).join(' · ');
+    document.getElementById('email-subject').textContent = data.subject || '';
+    document.getElementById('email-body').textContent = data.body || '';
+
+    const words = (data.body || '').split(/\s+/).filter(Boolean).length;
+    document.getElementById('word-count').textContent = words + ' words';
+
+    document.getElementById('empty-state').style.display = 'none';
+    document.getElementById('output-section').classList.add('visible');
+  }
+
+  function copyEmail() {
+    const subject = document.getElementById('email-subject').textContent;
+    const body = document.getElementById('email-body').textContent;
+    navigator.clipboard.writeText('Subject: ' + subject + '\n\n' + body).then(() => {
+      const btn = document.getElementById('copy-btn');
+      btn.textContent = 'Copied ✓';
+      setTimeout(() => btn.textContent = 'Copy email', 1800);
+    });
+  }
+
+  updateCounter();
+</script>
+</body>
+</html>
