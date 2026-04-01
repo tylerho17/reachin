@@ -66,6 +66,8 @@ STUDENT SENDING THE EMAIL:
 EMAIL RULES:
 Write exactly 2 paragraphs structured like this:
 
+Start with "Hi [recipient first name]," on its own line, then a blank line.
+
 PARAGRAPH 1 (2 sentences — about the student):
 - Sentence 1: "My name is [name], and I'm a [year] at [school] majoring in [major]."
 - Sentence 2: One sentence about their experience and what specifically draws them to banking or their focus area. Make it substantive, not generic. Reference actual internships if listed.
