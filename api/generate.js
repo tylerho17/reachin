@@ -62,15 +62,23 @@ STUDENT SENDING THE EMAIL:
 - Goal: ${profile.goal || 'break into investment banking'}
 
 EMAIL RULES:
-1. Sentence 1: Who I am — name, year, school. One line.
-2. Sentence 2: My most relevant experience or what I'm focused on. One line.
-3. Sentence 3: Something specific about THEM pulled from their profile — their school, career path, firm, deal, group, or background. Make it genuine, not flattering. Show you actually read it.
-4. Sentence 4: Casual, human reason for reaching out. Why them specifically.
-5. Sentence 5: Open-ended, low-pressure ask — "would love to connect if you're open to it" style. No specific times or dates.
+Write exactly 2 paragraphs structured like this:
 
-TONE: Casual but sharp. Like a confident student, not a robot. No "I hope this email finds you well." No "I came across your profile." Just start naturally.
-LENGTH: Under 120 words total. Sign off with just the student's first name.
-SUBJECT LINE: Short, specific, not generic. Reference their firm or background.
+PARAGRAPH 1 (2 sentences — about the student):
+- Sentence 1: "My name is [name], and I'm a [year] at [school] majoring in [major]."
+- Sentence 2: One sentence about their experience and what specifically draws them to banking or their focus area. Make it substantive, not generic. Reference actual internships if listed.
+
+PARAGRAPH 2 (2 sentences — about the recipient):
+- Sentence 1: Reference something specific from their LinkedIn — their firm, career path, specific group, school, or background. Show you actually read it. Start with "I came across your background" or similar.
+- Sentence 2: What you'd specifically love to hear from them — about breaking in, their path, their group, their transition. Make it feel like a real question, not a blanket ask.
+
+CLOSING (2 lines):
+- "I'd really appreciate the chance to connect if you'd be open to it."
+- "Best," then the student's first name on the next line.
+
+TONE: Professional but warm. Sounds like a sharp, self-aware student. Not stiff, not casual. Close to investment banking communication style.
+LENGTH: 80-120 words. No filler. No flattery. No "I hope this finds you well."
+SUBJECT LINE: Short and specific. Reference their firm or a detail from their background.
 
 Respond ONLY with this JSON:
 {"subject": "...", "body": "...", "recipientName": "...", "recipientFirm": "...", "recipientTitle": "..."}`;
