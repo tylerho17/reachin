@@ -645,7 +645,7 @@
   }
 
   function saveProfile() {
-    ['p-name','p-year','p-school','p-major','p-exp','p-goal'].forEach(id => {
+    ['p-name','p-year','p-school','p-major','p-exp','p-goal','p-extras'].forEach(id => {
       localStorage.setItem(id, document.getElementById(id).value);
     });
     closeModal();
@@ -656,7 +656,7 @@
   }
 
   function loadProfileIntoModal() {
-    ['p-name','p-year','p-school','p-major','p-exp','p-goal'].forEach(id => {
+    ['p-name','p-year','p-school','p-major','p-exp','p-goal','p-extras'].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.value = localStorage.getItem(id) || '';
     });
