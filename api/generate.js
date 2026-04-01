@@ -60,6 +60,8 @@ STUDENT SENDING THE EMAIL:
 - Major: ${profile.major || 'Business'}
 - Experience: ${profile.exp || 'interested in investment banking'}
 - Goal: ${profile.goal || 'break into investment banking'}
+- Personal details / interests: ${profile.extras || 'none listed'}
+
 
 EMAIL RULES:
 Write exactly 2 paragraphs structured like this:
