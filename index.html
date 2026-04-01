@@ -627,7 +627,7 @@
   function runSearch() {
     const q = document.getElementById('search-input').value.trim();
     if (!q) return;
-    window.open('https://www.google.com/search?q=' + encodeURIComponent('site:linkedin.com/in ' + q), '_blank');
+    window.open('https://www.google.com/search?q=' + encodeURIComponent(q) + '+site:linkedin.com/in', '_blank');
   }
 
   function getProfile() {
